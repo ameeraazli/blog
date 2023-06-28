@@ -1,6 +1,7 @@
 package com.example.blog.springdatajdbc.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +12,15 @@ public class Post {
     private String content;
     private LocalDateTime publishedOn;
     private LocalDateTime updatedOn;
-    //author
+    private AggregateReference<Author, Integer> author;
     //comments
 
     //constructor
-    public Post(String title, String content) {
+    public Post(String title, String content, AggregateReference<Author,Integer> author) {
         this.title = title;
         this.content = content;
         this.publishedOn = LocalDateTime.now();
+        this.author = author;
     }
 
     //getter and setter methods
